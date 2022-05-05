@@ -16,3 +16,34 @@ test('Should render same text into title prop', () => {
 });
 
 
+// test('Should render a role Heading', () => {
+//   render(<Header title="My header"/>);
+//   const headerElement = screen.getByRole("heading");
+//   expect(headerElement).toBeInTheDocument();
+// });
+
+//By heading and their text  content
+test('Should render a heading role', () => {
+  render(<Header title="My header"/>);
+  const headerElement = screen.getByRole("heading",{name: "My header"});
+  expect(headerElement).toBeInTheDocument();
+});
+
+
+//By title
+test('Should render by Title', () => {
+  render(<Header title="My header"/>);
+  const headerElement = screen.getByTitle('Header');
+  expect(headerElement).toBeInTheDocument();
+});
+
+
+
+//By ID
+test('Should render by id', () => {
+  render(<Header title="My header"/>);
+  const headerElement = screen.getByTestId('header-1');
+  expect(headerElement).toBeInTheDocument();
+});
+
+
