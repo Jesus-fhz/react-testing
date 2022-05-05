@@ -11,17 +11,29 @@
         </BrowserRouter>
     )
  }
+
+ //Adding tasks dynamically
+ const addTask = (tasks)=>{
+    const inputElement = screen.getByTestId("add-input");
+    const buttonElement = screen.getByRole("button",{name: /Add/i});
+    tasks.forEach(element => {
+        fireEvent.change(inputElement, {target:{value:element}});
+        fireEvent.click(buttonElement);
+    });
+ }
+ //Integration tests, testing how two or components behave together.
  describe("Todo component - tests",()=>{
-    it("Should render something", ()=>{
+    it("Should return a new task after adding it, using", ()=>{
        render(<MockTodo/>)
-       const inputElement = screen.getByTestId("add-input");
-       const buttonElement = screen.getByRole("button",{name: /Add/i});
-       fireEvent.change(inputElement, {target:{value:"Learning testing in react"}});
-       fireEvent.click(buttonElement);
+       addTask(["learning react testing", "After, we are learning web3js", "Also solidity"])
        //Getting the outer div, of the .map that renders the todos
-       const divElement = screen.getByTestId("todo-list-body");
-       expect(divElement).toBeInTheDocument();
-       expect(divElement.textContent).toBe("Learning testing in react");
+       const divElement = screen.getAllByTestId("task-container")
+       expect(divElement.length).toBeGreaterThanOrEqual(2);
     })
+
+    it("Should return a list of  tasks after adding them", ()=>{
+        render(<MockTodo/>)
+      
+     })
 
  })
