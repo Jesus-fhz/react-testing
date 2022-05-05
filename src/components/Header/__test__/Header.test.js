@@ -46,4 +46,24 @@ test('Should render by id', () => {
   expect(headerElement).toBeInTheDocument();
 });
 
+//Find By
+it('Should render using FindBy', async () =>  {
+  render(<Header title="My header"/>);
+  const headerElement =  await screen.findByText(/my header/i);
+  expect(headerElement).toBeInTheDocument();
+});
 
+
+//QueryBy
+it('Should render using QueryBy', async () =>  {
+  render(<Header title="My header"/>);
+  const headerElement =  screen.queryByTestId(/dogs/i);
+  expect(headerElement).not.toBeInTheDocument();
+});
+
+//Get All by
+it('Should render using GetAllBy', async () =>  {
+  render(<Header title="My header"/>);
+  const headerElement =  screen.getAllByRole('heading');
+  expect(headerElement.length).toBeGreaterThan(1)
+});
