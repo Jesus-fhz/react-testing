@@ -26,6 +26,7 @@ function AddInput({
         <div className="input-container">
             <input 
                 className="input" 
+                data-testid="add-input"
                 value={todo} 
                 onChange={(e) => setTodo(e.target.value)}
                 placeholder="Add a new task here..."
@@ -35,7 +36,7 @@ function AddInput({
                 onClick={addTodo}
             >
                 Add
-            </button>
+            </button> 
         </div>
     )
 }
