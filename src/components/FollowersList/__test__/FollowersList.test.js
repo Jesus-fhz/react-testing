@@ -1,5 +1,4 @@
-import {render, screen, fireEvent} from "@testing-library/react"
-import userEvent from '@testing-library/user-event';
+import {render, screen} from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
 import FollowersList from "../FollowersList"
 
@@ -10,7 +9,7 @@ const MockFollwersList = () => {
         </BrowserRouter>
     )
 }
- 
+
 describe("FollowersList component - tests",() => {
     it("Should render the first user", async  ()=>{
         render(<MockFollwersList/>)
