@@ -34,6 +34,20 @@
     it("Should return a list of  tasks after adding them", ()=>{
         render(<MockTodo/>)
       
-     })
+    })
 
+    it("Should change className style once the task is completed",()=>{
+        render(<MockTodo/>)
+        addTask(["After, we are learning web3js"]);
+        const divElement = screen.getByTestId("task-container");
+        expect(divElement).not.toHaveClass("todo-item-active");
+    })
+
+    it("Should have className todo-item-active when clicked",()=>{
+        render(<MockTodo/>)
+        addTask(["After, we are learning web3js"]);
+        const divElement = screen.getByTestId("task-container");
+        fireEvent.click(divElement);
+        expect(divElement).toHaveClass("todo-item-active");
+    })
  })
